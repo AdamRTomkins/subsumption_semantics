@@ -1,0 +1,68 @@
+[tool.poetry]
+name        = "subsumption_semantics"
+version     = "0.1.0"
+description = "A Neurosymbolic Semantic approach to Document Similarity"
+authors     = ["Adam Tomkins <artomkins@googlemail.com>"]
+packages = [
+    { include = "subsumption_semantics" },
+]
+
+[tool.poetry.dependencies]
+python          = { version = ">= 3.8, < 4.0" }
+spacy           = { version = ">= 3.0.8" }
+en-core-web-md  = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.0.0/en_core_web_md-3.0.0-py3-none-any.whl", optional=true}
+en-core-web-lg  = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.0.0/en_core_web_lg-3.0.0-py3-none-any.whl", optional=true}
+scikit-learn    = { version = ">= 0.24.0"}
+fire            = { version = ">= 0.4.0"}
+
+fastapi = { version = ">=0.82.0", optional = true }
+uvicorn = { version = ">=0.18.0", optional = true }
+
+
+streamlit = { version = ">=1.12.0", optional = true }
+streamlit_option_menu = { version = ">=0.3.2", optional = true }
+st_annotated_text = { version = ">=3.0.0", optional = true }
+sphinx            = { version = ">=5.3.0", optional = true }
+
+[tool.poetry.extras]
+web_lg = [
+    "en-core-web-lg"
+]
+
+web_md = [
+    "en-core-web-md"
+]
+
+api = [
+    "uvicorn",
+    "fastapi"
+]
+
+demo = [
+    "streamlit",
+    "streamlit_option_menu",
+    "st_annotated_text"
+]
+
+docs = [
+    "sphinx",
+    "python-gitlab"
+]
+
+[tool.poetry.plugins."spacy_factories"]
+"late_interaction_similarity" = "subsumption_semantics.pipeline_components:LateInteractionSimilarity"
+
+[tool.poetry.dev-dependencies]
+click = "*"
+pre-commit = "*"
+black = "*"
+xenon = "*"
+mypy = "*"
+pydocstyle = "*"
+
+[build-system]
+requires        = [
+    "poetry-core>=1.0.0",
+    "setuptools"  # for pip install -e
+]
+build-backend   = "poetry.core.masonry.api"
