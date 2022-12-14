@@ -1,6 +1,6 @@
 ## Subsumption Semantics
 
-<b> A late-interaction approach to semantic similarity for SpaCy, which allows for customization including symbolic integrations. <b>
+__ A late-interaction approach to semantic similarity for SpaCy, which allows for customization including symbolic integrations. __
 
 ## About
 
